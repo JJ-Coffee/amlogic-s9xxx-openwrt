@@ -19,6 +19,7 @@ on:
         type: choice
         options:
           - openwrt:22.03.5
+          - openwrt:23.05.0-rc4
           - openwrt:21.02.7
           - openwrt:19.07.10
           - openwrt:18.06.9
@@ -185,10 +186,10 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - JJ-Coffee
 
 env:
-  TZ: America/New_York
+  TZ: Asia/Jakarta
   IMAGEBUILDER_SH: config/imagebuilder/imagebuilder.sh
 
 jobs:
