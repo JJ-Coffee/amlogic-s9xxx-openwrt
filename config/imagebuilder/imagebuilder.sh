@@ -107,6 +107,7 @@ adjust_settings() {
     # For other files
     # ......
     sed -i "s|CONFIG_DEFAULT_dnsmasq=.*|# CONFIG_DEFAULT_dnsmasq is not set|g" .config
+    sed -i 's|# CONFIG_TUN_VNET_CROSS_LE is not set|CONFIG_TUN_VNET_CROSS_LE=y|' .config
 
     sync && sleep 3
     echo -e "${INFO} [ openwrt ] directory status: $(ls -al 2>/dev/null)"
