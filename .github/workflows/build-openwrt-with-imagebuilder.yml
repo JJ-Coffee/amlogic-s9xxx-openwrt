@@ -184,6 +184,7 @@ on:
         options:
           - ophub/kernel
           - nabakdev/sibondt-kernel
+          - armarchindo/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
@@ -194,6 +195,7 @@ on:
           - flippy
           - dev
           - beta
+          - kernel.org
       builder_name:
         description: "Set OpenWrt builder signature."
         required: false
@@ -202,7 +204,7 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - JJ
 
 env:
   TZ: America/New_York
