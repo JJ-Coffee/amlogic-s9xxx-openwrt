@@ -192,6 +192,7 @@ on:
           - 5.15.y
           - 5.15.184
           - 6.1.y
+          - 6.1.66
           - 6.6.y
           - 6.12.y
           - 5.4.y_5.10.y
@@ -224,6 +225,7 @@ on:
           - dev
           - beta
           - kernel.org
+          - dbai
       builder_name:
         description: "Set OpenWrt builder signature."
         required: false
