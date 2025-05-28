@@ -227,7 +227,7 @@ rebuild_firmware() {
         kmod-usb-net-asix kmod-usb-net-asix-ax88179 kmod-usb-net-rtl8150 kmod-usb-net-rtl8152 \
         hostapd wpa-cli wpa-supplicant kmod-cfg80211 kmod-mac80211 wireless-tools iw-full hostapd-utils \
         libqmi libqrtr-glib qmi-utils luci-proto-qmi mbim-utils libmbim luci-proto-mbim umbim \
-        kmod-usb-serial kmod-usb-serial-option tcping \
+        kmod-usb-serial kmod-usb-serial-option \
         \
         ${config_list} \
         "
