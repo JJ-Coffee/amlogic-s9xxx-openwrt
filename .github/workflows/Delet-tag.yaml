@@ -1,10 +1,10 @@
 name: Delete All GitHub Releases and Tags
 
 on:
-  workflow_dispatch:  # Bisa dijalankan manual dari UI GitHub Actions
+  workflow_dispatch:
 
 permissions:
-  contents: write  # Diperlukan untuk menghapus release/tag
+  contents: write  # Diperlukan agar bisa menghapus tag dan release
 
 jobs:
   delete_releases_tags:
@@ -19,18 +19,14 @@ jobs:
           sudo apt update
           sudo apt install -y gh
 
-      - name: Authenticate with GitHub CLI
+      - name: Delete all releases
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Delete all releases
         run: |
           for release in $(gh release list --limit 1000 | awk '{print $1}'); do
             echo "Deleting release: $release"
             gh release delete "$release" --yes
           done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Delete all remote tags
         run: |
