@@ -22,8 +22,6 @@ jobs:
       - name: Authenticate with GitHub CLI
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "$GH_TOKEN" | gh auth login --with-token
 
       - name: Delete all releases
         run: |
