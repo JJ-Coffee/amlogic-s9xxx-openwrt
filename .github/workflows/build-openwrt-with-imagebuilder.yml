@@ -25,7 +25,7 @@ on:
       openwrt_board:
         description: "Select device board"
         required: false
-        default: "all"
+        default: "s905x-b860h"
         type: choice
         options:
           - all
@@ -182,13 +182,17 @@ on:
       openwrt_kernel:
         description: "Select kernel version"
         required: false
-        default: "6.1.y_6.12.y"
+        default: "6.0.6"
         type: choice
         options:
+          - 6.0.6
+          - 6.6.6
           - 5.4.y
           - 5.10.y
           - 5.15.y
+          - 5.15.184
           - 6.1.y
+          - 6.1.66
           - 6.6.y
           - 6.12.y
           - 5.4.y_5.10.y
@@ -208,6 +212,8 @@ on:
         type: choice
         options:
           - ophub/kernel
+          - JJ-Coffee/kernel
+          - armarchindo/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
@@ -218,6 +224,8 @@ on:
           - flippy
           - dev
           - beta
+          - kernel.org
+          - dbai
       builder_name:
         description: "Set OpenWrt builder signature."
         required: false
@@ -230,7 +238,7 @@ on:
 
 env:
   TZ: America/New_York
-  IMAGEBUILDER_SH: config/imagebuilder/imagebuilder.sh
+  IMAGEBUILDER_SH: config/imagebuilder/imagebuilder2.sh
 
 jobs:
   build:
@@ -307,7 +315,7 @@ jobs:
           for file in *; do [[ ! -d "${file}" ]] && sha256sum "${file}" >"${file}.sha"; done
 
           [[ -d "/builder/openwrt" ]] || mkdir -p /builder/openwrt
-          ln -sf /builder/openwrt /home/runner/work/_actions/ophub/amlogic-s9xxx-openwrt/main/openwrt
+          ln -sf /builder/openwrt /home/runner/work/_actions/JJ-Coffee/amlogic-s9xxx-openwrt/main/openwrt
           df -hT ${PWD}
           echo "status=success" >> ${GITHUB_OUTPUT}
 
@@ -324,7 +332,7 @@ jobs:
 
       - name: Packaging OpenWrt
         if: ${{ steps.clean.outputs.status }} == 'success' && !cancelled()
-        uses: ophub/amlogic-s9xxx-openwrt@main
+        uses: JJ-Coffee/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: imagebuilder/output/*rootfs.tar.gz
           openwrt_board: ${{ inputs.openwrt_board }}

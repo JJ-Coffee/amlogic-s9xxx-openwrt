@@ -118,7 +118,7 @@ custom_packages() {
     amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
     #
     amlogic_file="luci-app-amlogic"
-    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
+    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_file}.*.ipk" | head -n 1)"
     curl -fsSOJL ${amlogic_file_down}
     [[ "${?}" -eq "0" ]] || error_msg "[ ${amlogic_file} ] download failed!"
     echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
@@ -133,9 +133,35 @@ custom_packages() {
     openclash_api="https://api.github.com/repos/vernesong/OpenClash/releases"
     #
     openclash_file="luci-app-openclash"
-    openclash_file_down="$(curl -s ${openclash_api} | grep "browser_download_url" | grep -oE "https.*${openclash_name}.*.ipk" | head -n 1)"
+    openclash_file_down="$(curl -s ${openclash_api} | grep "browser_download_url" | grep -oE "https.*${openclash_file}.*.ipk" | head -n 1)"
     curl -fsSOJL ${openclash_file_down}
     [[ "${?}" -eq "0" ]] || error_msg "[ ${openclash_file} ] download failed!"
+    echo -e "${INFO} The [ ${openclash_file} ] is downloaded successfully."
+    
+    # Download nekoclash
+    nekoclash_api="https://api.github.com/repos/bobbyunknown/openwrt-neko/releases"
+    mihomo_name="mihomo_1.19.1-2_aarch64_generic"
+    singbox_name="sing-box_1.10.7-1_aarch64_generic"
+    nekoclash_name="luci-app-neko_1.2.5-beta_dev_all"
+    mihomo_name_down="$(curl -s ${nekoclash_api} | grep "browser_download_url" | grep -oE "https.*${mihomo_name}.*.ipk" | head -n 1)"
+    singbox_name_down="$(curl -s ${nekoclash_api} | grep "browser_download_url" | grep -oE "https.*${singbox_name}.*.ipk" | head -n 1)"
+    nekoclash_name_down="$(curl -s ${nekoclash_api} | grep "browser_download_url" | grep -oE "https.*${nekoclash_name}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${mihomo_name_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${mihomo_name} ] download failed!"
+    echo -e "${INFO} The [ ${mihomo_name} ] is downloaded successfully."
+    curl -fsSOJL ${singbox_name_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${singbox_name} ] download failed!"
+    echo -e "${INFO} The [ ${singbox_name} ] is downloaded successfully."
+    curl -fsSOJL ${nekoclash_name_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${nekoclash_name} ] download failed!"
+    echo -e "${INFO} The [ ${nekoclash_name} ] is downloaded successfully."
+    
+    # Download luci-app-nekobox
+    nekobox_api="https://api.github.com/repos/Thaolga/openwrt-nekobox/releases"
+    nekobox_file="luci-app-nekobox"
+    nekobox_file_down="$(curl -s ${nekobox_api} | grep "browser_download_url" | grep -oE "https.*${nekobox_file}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${nekobox_file_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${nekobox_file} ] download failed!"
     echo -e "${INFO} The [ ${openclash_file} ] is downloaded successfully."
     # Download other luci-app-xxx
     # ......
@@ -193,17 +219,20 @@ rebuild_firmware() {
         perl-http-date perlbase-file perlbase-getopt perlbase-time perlbase-unicode perlbase-utf8 \
         pigz ppp ppp-mod-pppoe pv rename resize2fs runc tar tini ttyd tune2fs \
         uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch uuidgen wget-ssl \
-        wpad-basic wwan xfs-fsck xfs-mkfs xz xz-utils ziptool zoneinfo-asia zoneinfo-core zstd \
+        which wpad-basic wwan xfs-fsck xfs-mkfs xz xz-utils ziptool zoneinfo-asia zoneinfo-core zstd \
         \
         luci luci-base luci-compat luci-lib-base \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network \
         luci-mod-status luci-mod-system luci-proto-ipip luci-proto-ipv6 \
         luci-proto-ppp \
         \
-        luci-app-amlogic luci-app-openclash -dnsmasq \
+        luci-app-amlogic -dnsmasq dnsmasq-full \
+        mihomo sing-box luci-app-nekobox \
         \
         php8 php8-cgi php8-mod-ctype php8-mod-fileinfo php8-mod-gettext php8-mod-gmp php8-mod-iconv php8-mod-mbstring php8-mod-pcntl php8-mod-session php8-mod-zip \
         php8-mod-filter php8-mod-curl \
+        \
+        python3 python3-psycopg2 \
         \
         kmod-inet-diag kmod-netlink-diag kmod-nft-tproxy kmod-nft-socket \
         kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
