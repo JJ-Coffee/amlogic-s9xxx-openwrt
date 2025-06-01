@@ -141,28 +141,24 @@ custom_packages() {
     # Download nekoclash
     nekoclash_api="https://api.github.com/repos/bobbyunknown/openwrt-neko/releases"
     mihomo_name="mihomo_1.19.1-2_aarch64_generic"
-    singbox_name="sing-box_1.10.7-1_aarch64_generic"
     nekoclash_name="luci-app-neko_1.2.5-beta_dev_all"
     mihomo_name_down="$(curl -s ${nekoclash_api} | grep "browser_download_url" | grep -oE "https.*${mihomo_name}.*.ipk" | head -n 1)"
-    singbox_name_down="$(curl -s ${nekoclash_api} | grep "browser_download_url" | grep -oE "https.*${singbox_name}.*.ipk" | head -n 1)"
     nekoclash_name_down="$(curl -s ${nekoclash_api} | grep "browser_download_url" | grep -oE "https.*${nekoclash_name}.*.ipk" | head -n 1)"
     curl -fsSOJL ${mihomo_name_down}
     [[ "${?}" -eq "0" ]] || error_msg "[ ${mihomo_name} ] download failed!"
     echo -e "${INFO} The [ ${mihomo_name} ] is downloaded successfully."
-    curl -fsSOJL ${singbox_name_down}
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${singbox_name} ] download failed!"
-    echo -e "${INFO} The [ ${singbox_name} ] is downloaded successfully."
     curl -fsSOJL ${nekoclash_name_down}
     [[ "${?}" -eq "0" ]] || error_msg "[ ${nekoclash_name} ] download failed!"
     echo -e "${INFO} The [ ${nekoclash_name} ] is downloaded successfully."
     
-    # Download luci-app-nekobox
-    nekobox_api="https://api.github.com/repos/Thaolga/openwrt-nekobox/releases"
-    nekobox_file="luci-app-nekobox"
-    nekobox_file_down="$(curl -s ${nekobox_api} | grep "browser_download_url" | grep -oE "https.*${nekobox_file}.*.ipk" | head -n 1)"
-    curl -fsSOJL ${nekobox_file_down}
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${nekobox_file} ] download failed!"
-    echo -e "${INFO} The [ ${openclash_file} ] is downloaded successfully."
+    #sing-box
+    singbox_api="https://api.github.com/repos/JJ-Coffee/JJ-Package/releases"
+    singbox_name="singbox"
+    singbox_name_down="$(curl -s ${singbox_api} | grep "browser_download_url" | grep -oE "https.*${singbox_name}.*.ipk" | head -n 1)"
+    curl -fsSOJL ${singbox_name_down}
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${singbox_name} ] download failed!"
+    echo -e "${INFO} The [ ${singbox_name} ] is downloaded successfully."
+    
     # Download other luci-app-xxx
     # ......
 
@@ -227,7 +223,7 @@ rebuild_firmware() {
         luci-proto-ppp \
         \
         luci-app-amlogic -dnsmasq dnsmasq-full \
-        mihomo sing-box luci-app-nekobox \
+        mihomo sing-box luci-app-neko \
         \
         php8 php8-cgi php8-mod-ctype php8-mod-fileinfo php8-mod-gettext php8-mod-gmp php8-mod-iconv php8-mod-mbstring php8-mod-pcntl php8-mod-session php8-mod-zip \
         php8-mod-filter php8-mod-curl \
