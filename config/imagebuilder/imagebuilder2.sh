@@ -153,7 +153,7 @@ custom_packages() {
     
     #sing-box
     singbox_api="https://api.github.com/repos/JJ-Coffee/JJ-Package/releases"
-    singbox_name="singbox"
+    singbox_name="sing-box"
     singbox_name_down="$(curl -s ${singbox_api} | grep "browser_download_url" | grep -oE "https.*${singbox_name}.*.ipk" | head -n 1)"
     curl -fsSOJL ${singbox_name_down}
     [[ "${?}" -eq "0" ]] || error_msg "[ ${singbox_name} ] download failed!"
