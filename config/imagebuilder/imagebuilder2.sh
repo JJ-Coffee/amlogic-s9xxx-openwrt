@@ -223,7 +223,7 @@ rebuild_firmware() {
         luci-proto-ppp \
         \
         luci-app-amlogic -dnsmasq dnsmasq-full \
-        mihomo sing-box luci-app-neko \
+        mihomo -sing-box sing-box luci-app-neko \
         \
         php8 php8-cgi php8-mod-ctype php8-mod-fileinfo php8-mod-gettext php8-mod-gmp php8-mod-iconv php8-mod-mbstring php8-mod-pcntl php8-mod-session php8-mod-zip \
         php8-mod-filter php8-mod-curl \
