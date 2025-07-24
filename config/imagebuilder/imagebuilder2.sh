@@ -220,7 +220,7 @@ rebuild_firmware() {
         luci luci-base luci-compat luci-lib-base \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network \
         luci-mod-status luci-mod-system luci-proto-ipip luci-proto-ipv6 \
-        luci-proto-ppp \
+        luci-proto-ppp luci-proto-ncm luci-proto-qmi \
         \
         luci-app-amlogic -dnsmasq dnsmasq-full \
         mihomo -sing-box sing-box luci-app-neko \
@@ -234,6 +234,7 @@ rebuild_firmware() {
         kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
         kmod-fs-btrfs \
         \
+        kmod-usb-acm kmod-usb-net-qmi-wwan \
         kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem kmod-usb-net-cdc-ether kmod-usb-net-cdc-subset \
         kmod-nls-base kmod-usb-core kmod-usb-net kmod-usb2 kmod-usb-net-ipheth \
         kmod-usb-net-huawei-cdc-ncm kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan usbutils \
