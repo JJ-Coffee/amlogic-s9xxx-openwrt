@@ -207,7 +207,7 @@ rebuild_firmware() {
         acpid attr base-files bash bc blkid block-mount blockd bsdtar btrfs-progs busybox bzip2 \
         cgi-io chattr comgt comgt-ncm containerd coremark coreutils coreutils-base64 coreutils-nohup \
         coreutils-truncate coreutils-stat curl dosfstools dumpe2fs e2freefrag e2fsprogs \
-        exfat-mkfs f2fs-tools f2fsck fdisk gawk getopt git gzip hostapd-common iconv iw-full iwinfo jq \
+        exfat-mkfs f2fs-tools f2fsck fdisk gawk getopt git gzip iconv iw-full iwinfo jq \
         jshn kmod-cfg80211 kmod-mac80211 libjson-script liblucihttp \
         liblucihttp-lua losetup lsattr lsblk lscpu mkf2fs mount-utils nano openssl-util parted \
         perl-http-date perlbase-file perlbase-getopt perlbase-time perlbase-unicode perlbase-utf8 \
@@ -234,7 +234,7 @@ rebuild_firmware() {
         \
         hostapd hostapd-utils wpa-supplicant wpa-cli wireless-tools \
         \
-        kmod-usb-acm kmod-usb-net-qmi-wwan kmod-rtl8xxxu  kmod-rtlwifi \
+        kmod-usb-acm kmod-usb-net-qmi-wwan kmod-rtl8xxxu kmod-rtlwifi \
         kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem kmod-usb-net-cdc-ether kmod-usb-net-cdc-subset \
         kmod-nls-base kmod-usb-core kmod-usb-net kmod-usb2 kmod-usb-net-ipheth \
         kmod-usb-net-huawei-cdc-ncm kmod-usb-serial kmod-usb-serial-option kmod-usb-serial-wwan usbutils \
